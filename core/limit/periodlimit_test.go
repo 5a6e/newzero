@@ -5,8 +5,8 @@ import (
 
 	"github.com/alicebob/miniredis/v2"
 	"github.com/stretchr/testify/assert"
-	"github.com/zeromicro/go-zero/core/stores/redis"
-	"github.com/zeromicro/go-zero/core/stores/redis/redistest"
+	"github.com/5a6e/newzero/core/stores/redis"
+	"github.com/5a6e/newzero/core/stores/redis/redistest"
 )
 
 func TestPeriodLimit_Take(t *testing.T) {

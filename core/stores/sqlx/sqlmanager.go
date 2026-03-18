@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/go-sql-driver/mysql"
-	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/core/syncx"
+	"github.com/5a6e/newzero/core/logx"
+	"github.com/5a6e/newzero/core/syncx"
 )
 
 const (

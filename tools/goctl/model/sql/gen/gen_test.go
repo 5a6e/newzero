@@ -12,12 +12,12 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/core/stores/builder"
-	"github.com/zeromicro/go-zero/core/stringx"
-	"github.com/zeromicro/go-zero/tools/goctl/config"
-	"github.com/zeromicro/go-zero/tools/goctl/model/sql/parser"
-	"github.com/zeromicro/go-zero/tools/goctl/util/pathx"
+	"github.com/5a6e/newzero/core/logx"
+	"github.com/5a6e/newzero/core/stores/builder"
+	"github.com/5a6e/newzero/core/stringx"
+	"github.com/5a6e/newzero/tools/goctl/config"
+	"github.com/5a6e/newzero/tools/goctl/model/sql/parser"
+	"github.com/5a6e/newzero/tools/goctl/util/pathx"
 )
 
 //go:embed testdata/user.sql

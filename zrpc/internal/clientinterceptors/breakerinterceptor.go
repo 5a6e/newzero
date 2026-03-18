@@ -4,8 +4,8 @@ import (
 	"context"
 	"path"
 
-	"github.com/zeromicro/go-zero/core/breaker"
-	"github.com/zeromicro/go-zero/zrpc/internal/codes"
+	"github.com/5a6e/newzero/core/breaker"
+	"github.com/5a6e/newzero/zrpc/internal/codes"
 	"google.golang.org/grpc"
 )
 

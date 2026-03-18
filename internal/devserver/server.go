@@ -8,10 +8,10 @@ import (
 	"sync"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/core/prometheus"
-	"github.com/zeromicro/go-zero/core/threading"
-	"github.com/zeromicro/go-zero/internal/health"
+	"github.com/5a6e/newzero/core/logx"
+	"github.com/5a6e/newzero/core/prometheus"
+	"github.com/5a6e/newzero/core/threading"
+	"github.com/5a6e/newzero/internal/health"
 )
 
 var once sync.Once

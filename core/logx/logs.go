@@ -11,7 +11,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/zeromicro/go-zero/core/sysx"
+	"github.com/5a6e/newzero/core/sysx"
 )
 
 const callerDepth = 4

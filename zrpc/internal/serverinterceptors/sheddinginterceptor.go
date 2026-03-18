@@ -5,8 +5,8 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/zeromicro/go-zero/core/load"
-	"github.com/zeromicro/go-zero/core/stat"
+	"github.com/5a6e/newzero/core/load"
+	"github.com/5a6e/newzero/core/stat"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

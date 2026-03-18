@@ -5,7 +5,7 @@ import (
 	"os/exec"
 	"runtime"
 
-	"github.com/zeromicro/go-zero/tools/goctl/vars"
+	"github.com/5a6e/newzero/tools/goctl/vars"
 )
 
 func goStart(dir string) {

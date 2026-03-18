@@ -4,7 +4,7 @@ import (
 	"context"
 
 	sdkmcp "github.com/modelcontextprotocol/go-sdk/mcp"
-	"github.com/zeromicro/go-zero/core/logx"
+	"github.com/5a6e/newzero/core/logx"
 )
 
 // Re-export commonly used SDK types for convenience

@@ -11,9 +11,9 @@ import (
 
 	red "github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/assert"
-	"github.com/zeromicro/go-zero/core/breaker"
-	"github.com/zeromicro/go-zero/core/logx/logtest"
-	"github.com/zeromicro/go-zero/core/trace/tracetest"
+	"github.com/5a6e/newzero/core/breaker"
+	"github.com/5a6e/newzero/core/logx/logtest"
+	"github.com/5a6e/newzero/core/trace/tracetest"
 	tracesdk "go.opentelemetry.io/otel/trace"
 )
 

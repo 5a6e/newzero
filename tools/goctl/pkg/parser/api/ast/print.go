@@ -7,7 +7,7 @@ import (
 	"os"
 	"reflect"
 
-	apitoken "github.com/zeromicro/go-zero/tools/goctl/pkg/parser/api/token"
+	apitoken "github.com/5a6e/newzero/tools/goctl/pkg/parser/api/token"
 )
 
 // A FieldFilter may be provided to Fprint to control the output.

@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/zeromicro/go-zero/core/logx"
+	"github.com/5a6e/newzero/core/logx"
 )
 
 func TestScriptCache(t *testing.T) {

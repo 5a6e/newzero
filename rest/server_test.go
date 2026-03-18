@@ -14,14 +14,14 @@ import (
 	"testing"
 	"time"
 
+	"github.com/5a6e/newzero/core/conf"
+	"github.com/5a6e/newzero/core/logx/logtest"
+	"github.com/5a6e/newzero/rest/chain"
+	"github.com/5a6e/newzero/rest/httpx"
+	"github.com/5a6e/newzero/rest/internal/cors"
+	"github.com/5a6e/newzero/rest/internal/header"
+	"github.com/5a6e/newzero/rest/router"
 	"github.com/stretchr/testify/assert"
-	"github.com/zeromicro/go-zero/core/conf"
-	"github.com/zeromicro/go-zero/core/logx/logtest"
-	"github.com/zeromicro/go-zero/rest/chain"
-	"github.com/zeromicro/go-zero/rest/httpx"
-	"github.com/zeromicro/go-zero/rest/internal/cors"
-	"github.com/zeromicro/go-zero/rest/internal/header"
-	"github.com/zeromicro/go-zero/rest/router"
 )
 
 const (

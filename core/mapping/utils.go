@@ -11,8 +11,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/zeromicro/go-zero/core/lang"
-	"github.com/zeromicro/go-zero/core/stringx"
+	"github.com/5a6e/newzero/core/lang"
+	"github.com/5a6e/newzero/core/stringx"
 )
 
 const (

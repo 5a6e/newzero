@@ -3,11 +3,11 @@ package monc
 import (
 	"context"
 
-	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/core/stores/cache"
-	"github.com/zeromicro/go-zero/core/stores/mon"
-	"github.com/zeromicro/go-zero/core/stores/redis"
-	"github.com/zeromicro/go-zero/core/syncx"
+	"github.com/5a6e/newzero/core/logx"
+	"github.com/5a6e/newzero/core/stores/cache"
+	"github.com/5a6e/newzero/core/stores/mon"
+	"github.com/5a6e/newzero/core/stores/redis"
+	"github.com/5a6e/newzero/core/syncx"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )

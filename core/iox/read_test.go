@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/zeromicro/go-zero/core/fs"
-	"github.com/zeromicro/go-zero/core/stringx"
+	"github.com/5a6e/newzero/core/fs"
+	"github.com/5a6e/newzero/core/stringx"
 )
 
 func TestReadText(t *testing.T) {

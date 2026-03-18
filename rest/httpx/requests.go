@@ -7,11 +7,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/zeromicro/go-zero/core/mapping"
-	"github.com/zeromicro/go-zero/core/validation"
-	"github.com/zeromicro/go-zero/rest/internal/encoding"
-	"github.com/zeromicro/go-zero/rest/internal/header"
-	"github.com/zeromicro/go-zero/rest/pathvar"
+	"github.com/5a6e/newzero/core/mapping"
+	"github.com/5a6e/newzero/core/validation"
+	"github.com/5a6e/newzero/rest/internal/encoding"
+	"github.com/5a6e/newzero/rest/internal/header"
+	"github.com/5a6e/newzero/rest/pathvar"
 )
 
 const (

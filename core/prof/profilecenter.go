@@ -7,8 +7,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/core/threading"
+	"github.com/5a6e/newzero/core/logx"
+	"github.com/5a6e/newzero/core/threading"
 )
 
 type (

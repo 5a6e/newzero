@@ -6,7 +6,7 @@ import (
 	"runtime"
 
 	red "github.com/redis/go-redis/v9"
-	"github.com/zeromicro/go-zero/core/syncx"
+	"github.com/5a6e/newzero/core/syncx"
 )
 
 const (

@@ -5,7 +5,7 @@ import (
 	"errors"
 	"io"
 
-	ztrace "github.com/zeromicro/go-zero/core/trace"
+	ztrace "github.com/5a6e/newzero/core/trace"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/trace"

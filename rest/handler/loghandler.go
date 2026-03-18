@@ -12,15 +12,15 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/zeromicro/go-zero/core/color"
-	"github.com/zeromicro/go-zero/core/iox"
-	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/core/syncx"
-	"github.com/zeromicro/go-zero/core/timex"
-	"github.com/zeromicro/go-zero/core/utils"
-	"github.com/zeromicro/go-zero/rest/httpx"
-	"github.com/zeromicro/go-zero/rest/internal"
-	"github.com/zeromicro/go-zero/rest/internal/response"
+	"github.com/5a6e/newzero/core/color"
+	"github.com/5a6e/newzero/core/iox"
+	"github.com/5a6e/newzero/core/logx"
+	"github.com/5a6e/newzero/core/syncx"
+	"github.com/5a6e/newzero/core/timex"
+	"github.com/5a6e/newzero/core/utils"
+	"github.com/5a6e/newzero/rest/httpx"
+	"github.com/5a6e/newzero/rest/internal"
+	"github.com/5a6e/newzero/rest/internal/response"
 )
 
 const (
@@ -99,7 +99,7 @@ func DetailedLogHandler(next http.Handler) http.Handler {
 		lrw := newDetailLoggedResponseWriter(rw, &buf)
 
 		var dup io.ReadCloser
-		// https://github.com/zeromicro/go-zero/issues/3564
+		// https://github.com/5a6e/newzero/issues/3564
 		r.Body, dup = iox.LimitDupReadCloser(r.Body, limitDetailedBodyBytes)
 		logs := new(internal.LogCollector)
 		next.ServeHTTP(lrw, r.WithContext(internal.WithLogCollector(r.Context(), logs)))

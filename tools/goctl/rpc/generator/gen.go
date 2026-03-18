@@ -3,10 +3,10 @@ package generator
 import (
 	"path/filepath"
 
-	"github.com/zeromicro/go-zero/tools/goctl/rpc/parser"
-	"github.com/zeromicro/go-zero/tools/goctl/util/console"
-	"github.com/zeromicro/go-zero/tools/goctl/util/ctx"
-	"github.com/zeromicro/go-zero/tools/goctl/util/pathx"
+	"github.com/5a6e/newzero/tools/goctl/rpc/parser"
+	"github.com/5a6e/newzero/tools/goctl/util/console"
+	"github.com/5a6e/newzero/tools/goctl/util/ctx"
+	"github.com/5a6e/newzero/tools/goctl/util/pathx"
 )
 
 type ZRpcContext struct {

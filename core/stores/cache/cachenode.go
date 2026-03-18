@@ -9,12 +9,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/zeromicro/go-zero/core/jsonx"
-	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/core/mathx"
-	"github.com/zeromicro/go-zero/core/stat"
-	"github.com/zeromicro/go-zero/core/stores/redis"
-	"github.com/zeromicro/go-zero/core/syncx"
+	"github.com/5a6e/newzero/core/jsonx"
+	"github.com/5a6e/newzero/core/logx"
+	"github.com/5a6e/newzero/core/mathx"
+	"github.com/5a6e/newzero/core/stat"
+	"github.com/5a6e/newzero/core/stores/redis"
+	"github.com/5a6e/newzero/core/syncx"
 )
 
 const (

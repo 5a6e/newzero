@@ -9,8 +9,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/zeromicro/go-zero/tools/goctl/api/spec"
-	"github.com/zeromicro/go-zero/tools/goctl/pkg/parser/api/assertx"
+	"github.com/5a6e/newzero/tools/goctl/api/spec"
+	"github.com/5a6e/newzero/tools/goctl/pkg/parser/api/assertx"
 )
 
 func Test_Parse(t *testing.T) {

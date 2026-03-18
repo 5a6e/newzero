@@ -10,8 +10,8 @@ import (
 
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/stretchr/testify/assert"
-	"github.com/zeromicro/go-zero/core/breaker"
-	"github.com/zeromicro/go-zero/core/stores/dbtest"
+	"github.com/5a6e/newzero/core/breaker"
+	"github.com/5a6e/newzero/core/stores/dbtest"
 )
 
 var errMockedPlaceholder = errors.New("placeholder")

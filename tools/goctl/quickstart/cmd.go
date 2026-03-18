@@ -1,6 +1,6 @@
 package quickstart
 
-import "github.com/zeromicro/go-zero/tools/goctl/internal/cobrax"
+import "github.com/5a6e/newzero/tools/goctl/internal/cobrax"
 
 const (
 	serviceTypeMono  = "mono"

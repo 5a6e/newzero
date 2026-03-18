@@ -5,10 +5,10 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/zeromicro/go-zero/core/stores/cache"
-	"github.com/zeromicro/go-zero/core/stores/redis"
-	"github.com/zeromicro/go-zero/core/stores/sqlx"
-	"github.com/zeromicro/go-zero/core/syncx"
+	"github.com/5a6e/newzero/core/stores/cache"
+	"github.com/5a6e/newzero/core/stores/redis"
+	"github.com/5a6e/newzero/core/stores/sqlx"
+	"github.com/5a6e/newzero/core/syncx"
 )
 
 // see doc/sql-cache.md

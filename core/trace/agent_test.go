@@ -5,8 +5,8 @@ import (
 	"errors"
 	"testing"
 
+	"github.com/5a6e/newzero/core/logx"
 	"github.com/stretchr/testify/assert"
-	"github.com/zeromicro/go-zero/core/logx"
 	"go.opentelemetry.io/otel"
 )
 

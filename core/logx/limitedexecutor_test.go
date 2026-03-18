@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/zeromicro/go-zero/core/timex"
+	"github.com/5a6e/newzero/core/timex"
 )
 
 func TestLimitedExecutor_logOrDiscard(t *testing.T) {

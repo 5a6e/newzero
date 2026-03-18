@@ -9,9 +9,9 @@ import (
 	"github.com/emicklei/proto"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	conf "github.com/zeromicro/go-zero/tools/goctl/config"
-	"github.com/zeromicro/go-zero/tools/goctl/rpc/parser"
-	"github.com/zeromicro/go-zero/tools/goctl/util/stringx"
+	conf "github.com/5a6e/newzero/tools/goctl/config"
+	"github.com/5a6e/newzero/tools/goctl/rpc/parser"
+	"github.com/5a6e/newzero/tools/goctl/util/stringx"
 )
 
 // mockDirContext is a minimal DirContext for unit-testing genCallGroup.

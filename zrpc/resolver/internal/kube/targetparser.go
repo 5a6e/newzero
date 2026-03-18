@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/zeromicro/go-zero/zrpc/resolver/internal/targets"
+	"github.com/5a6e/newzero/zrpc/resolver/internal/targets"
 	"google.golang.org/grpc/resolver"
 )
 

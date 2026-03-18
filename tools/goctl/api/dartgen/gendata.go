@@ -6,7 +6,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/zeromicro/go-zero/tools/goctl/api/spec"
+	"github.com/5a6e/newzero/tools/goctl/api/spec"
 )
 
 const dataTemplate = `// --{{with .APISpec.Info}}{{.Title}}{{end}}--

@@ -13,8 +13,8 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
-	"github.com/zeromicro/go-zero/core/jsonx"
-	"github.com/zeromicro/go-zero/core/stringx"
+	"github.com/5a6e/newzero/core/jsonx"
+	"github.com/5a6e/newzero/core/stringx"
 )
 
 // because json.Number doesn't support strconv.ParseUint(...),

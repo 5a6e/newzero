@@ -3,7 +3,7 @@ package new
 import (
 	"fmt"
 
-	"github.com/zeromicro/go-zero/tools/goctl/util/pathx"
+	"github.com/5a6e/newzero/tools/goctl/util/pathx"
 )
 
 const (

@@ -11,8 +11,8 @@ import (
 	"github.com/prometheus/client_golang/prometheus/testutil"
 	red "github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/assert"
-	"github.com/zeromicro/go-zero/core/conf"
-	"github.com/zeromicro/go-zero/internal/devserver"
+	"github.com/5a6e/newzero/core/conf"
+	"github.com/5a6e/newzero/internal/devserver"
 )
 
 func TestRedisMetric(t *testing.T) {

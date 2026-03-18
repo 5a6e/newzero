@@ -16,9 +16,9 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/zeromicro/go-zero/core/codec"
-	"github.com/zeromicro/go-zero/core/fs"
-	"github.com/zeromicro/go-zero/rest/httpx"
+	"github.com/5a6e/newzero/core/codec"
+	"github.com/5a6e/newzero/core/fs"
+	"github.com/5a6e/newzero/rest/httpx"
 )
 
 const (

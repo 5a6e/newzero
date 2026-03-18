@@ -5,9 +5,9 @@ import (
 	"context"
 	"strings"
 
-	"github.com/zeromicro/go-zero/core/breaker"
-	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/core/timex"
+	"github.com/5a6e/newzero/core/breaker"
+	"github.com/5a6e/newzero/core/logx"
+	"github.com/5a6e/newzero/core/timex"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )

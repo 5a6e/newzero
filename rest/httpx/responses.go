@@ -8,11 +8,11 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/zeromicro/go-zero/core/jsonx"
-	"github.com/zeromicro/go-zero/core/logc"
-	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/rest/internal/errcode"
-	"github.com/zeromicro/go-zero/rest/internal/header"
+	"github.com/5a6e/newzero/core/jsonx"
+	"github.com/5a6e/newzero/core/logc"
+	"github.com/5a6e/newzero/core/logx"
+	"github.com/5a6e/newzero/rest/internal/errcode"
+	"github.com/5a6e/newzero/rest/internal/header"
 )
 
 var (

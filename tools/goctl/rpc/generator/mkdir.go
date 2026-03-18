@@ -4,12 +4,12 @@ import (
 	"path/filepath"
 	"strings"
 
-	conf "github.com/zeromicro/go-zero/tools/goctl/config"
-	"github.com/zeromicro/go-zero/tools/goctl/rpc/parser"
-	"github.com/zeromicro/go-zero/tools/goctl/util/ctx"
-	"github.com/zeromicro/go-zero/tools/goctl/util/format"
-	"github.com/zeromicro/go-zero/tools/goctl/util/pathx"
-	"github.com/zeromicro/go-zero/tools/goctl/util/stringx"
+	conf "github.com/5a6e/newzero/tools/goctl/config"
+	"github.com/5a6e/newzero/tools/goctl/rpc/parser"
+	"github.com/5a6e/newzero/tools/goctl/util/ctx"
+	"github.com/5a6e/newzero/tools/goctl/util/format"
+	"github.com/5a6e/newzero/tools/goctl/util/pathx"
+	"github.com/5a6e/newzero/tools/goctl/util/stringx"
 )
 
 const (

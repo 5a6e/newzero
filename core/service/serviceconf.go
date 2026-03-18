@@ -1,14 +1,14 @@
 package service
 
 import (
-	"github.com/zeromicro/go-zero/core/load"
-	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/core/proc"
-	"github.com/zeromicro/go-zero/core/prometheus"
-	"github.com/zeromicro/go-zero/core/stat"
-	"github.com/zeromicro/go-zero/core/trace"
-	"github.com/zeromicro/go-zero/internal/devserver"
-	"github.com/zeromicro/go-zero/internal/profiling"
+	"github.com/5a6e/newzero/core/load"
+	"github.com/5a6e/newzero/core/logx"
+	"github.com/5a6e/newzero/core/proc"
+	"github.com/5a6e/newzero/core/prometheus"
+	"github.com/5a6e/newzero/core/stat"
+	"github.com/5a6e/newzero/core/trace"
+	"github.com/5a6e/newzero/internal/devserver"
+	"github.com/5a6e/newzero/internal/profiling"
 )
 
 const (

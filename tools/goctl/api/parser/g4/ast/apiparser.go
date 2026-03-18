@@ -8,8 +8,8 @@ import (
 	"strings"
 
 	"github.com/zeromicro/antlr"
-	"github.com/zeromicro/go-zero/tools/goctl/api/parser/g4/gen/api"
-	"github.com/zeromicro/go-zero/tools/goctl/util/console"
+	"github.com/5a6e/newzero/tools/goctl/api/parser/g4/gen/api"
+	"github.com/5a6e/newzero/tools/goctl/util/console"
 )
 
 type (

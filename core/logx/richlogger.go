@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/zeromicro/go-zero/core/timex"
-	"github.com/zeromicro/go-zero/internal/trace"
+	"github.com/5a6e/newzero/core/timex"
+	"github.com/5a6e/newzero/internal/trace"
 )
 
 // WithCallerSkip returns a Logger with given caller skip.

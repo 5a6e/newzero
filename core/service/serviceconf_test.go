@@ -4,8 +4,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/internal/devserver"
+	"github.com/5a6e/newzero/core/logx"
+	"github.com/5a6e/newzero/internal/devserver"
 )
 
 func TestServiceConf(t *testing.T) {

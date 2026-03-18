@@ -8,10 +8,10 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/zeromicro/go-zero/core/configcenter/subscriber"
-	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/core/mapping"
-	"github.com/zeromicro/go-zero/core/threading"
+	"github.com/5a6e/newzero/core/configcenter/subscriber"
+	"github.com/5a6e/newzero/core/logx"
+	"github.com/5a6e/newzero/core/mapping"
+	"github.com/5a6e/newzero/core/threading"
 )
 
 var (

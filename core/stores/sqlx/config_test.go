@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/zeromicro/go-zero/core/conf"
+	"github.com/5a6e/newzero/core/conf"
 )
 
 func TestValidate(t *testing.T) {

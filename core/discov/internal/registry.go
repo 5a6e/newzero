@@ -10,11 +10,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/zeromicro/go-zero/core/lang"
-	"github.com/zeromicro/go-zero/core/logc"
-	"github.com/zeromicro/go-zero/core/mathx"
-	"github.com/zeromicro/go-zero/core/syncx"
-	"github.com/zeromicro/go-zero/core/threading"
+	"github.com/5a6e/newzero/core/lang"
+	"github.com/5a6e/newzero/core/logc"
+	"github.com/5a6e/newzero/core/mathx"
+	"github.com/5a6e/newzero/core/syncx"
+	"github.com/5a6e/newzero/core/threading"
 	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
 	clientv3 "go.etcd.io/etcd/client/v3"
 )
