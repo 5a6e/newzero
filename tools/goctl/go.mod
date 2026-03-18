@@ -1,8 +1,9 @@
 module github.com/5a6e/newzero/tools/goctl
 
-go 1.23.0
+go 1.24.7
 
 require (
+	github.com/5a6e/newzero v1.11.0
 	github.com/DATA-DOG/go-sqlmock v1.5.2
 	github.com/emicklei/proto v1.14.3
 	github.com/fatih/structtag v1.2.0
@@ -16,7 +17,6 @@ require (
 	github.com/withfig/autocomplete-tools/integrations/cobra v1.2.1
 	github.com/zeromicro/antlr v0.0.1
 	github.com/zeromicro/ddl-parser v1.0.5
-	github.com/5a6e/newzero v1.10.0
 	golang.org/x/text v0.28.0
 	google.golang.org/grpc v1.65.0
 	google.golang.org/protobuf v1.36.11
@@ -25,7 +25,7 @@ require (
 
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect
-	github.com/alicebob/miniredis/v2 v2.36.1 // indirect
+	github.com/alicebob/miniredis/v2 v2.37.0 // indirect
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20210521184019-c5ad59b459ec // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
@@ -72,8 +72,9 @@ require (
 	github.com/prometheus/client_model v0.6.2 // indirect
 	github.com/prometheus/common v0.66.1 // indirect
 	github.com/prometheus/procfs v0.16.1 // indirect
-	github.com/redis/go-redis/v9 v9.17.3 // indirect
+	github.com/redis/go-redis/v9 v9.18.0 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
+	github.com/titanous/json5 v1.0.0 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	github.com/yuin/gopher-lua v1.1.1 // indirect
 	go.etcd.io/etcd/api/v3 v3.5.15 // indirect
@@ -89,7 +90,7 @@ require (
 	go.opentelemetry.io/otel/sdk v1.24.0 // indirect
 	go.opentelemetry.io/otel/trace v1.24.0 // indirect
 	go.opentelemetry.io/proto/otlp v1.3.1 // indirect
-	go.uber.org/atomic v1.10.0 // indirect
+	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/automaxprocs v1.6.0 // indirect
 	go.uber.org/mock v0.6.0 // indirect
 	go.uber.org/multierr v1.9.0 // indirect
