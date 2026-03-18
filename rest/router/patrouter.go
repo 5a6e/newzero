@@ -46,14 +46,19 @@ func (pr *patRouter) Handle(method, reqPath string, handler http.Handler) error 
 	}
 
 	cleanPath := path.Clean(reqPath)
+	wrapped := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		r = pathvar.WithMatchedRoutePath(r, cleanPath)
+		handler.ServeHTTP(w, r)
+	})
+
 	tree, ok := pr.trees[method]
 	if ok {
-		return tree.Add(cleanPath, handler)
+		return tree.Add(cleanPath, wrapped)
 	}
 
 	tree = search.NewTree()
 	pr.trees[method] = tree
-	return tree.Add(cleanPath, handler)
+	return tree.Add(cleanPath, wrapped)
 }
 
 func (pr *patRouter) ServeHTTP(w http.ResponseWriter, r *http.Request) {

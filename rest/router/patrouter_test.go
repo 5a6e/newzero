@@ -1022,6 +1022,51 @@ func TestParseJsonPostWithInt2String(t *testing.T) {
 	router.ServeHTTP(rr, r)
 }
 
+func TestPatRouterMatchedRoutePath(t *testing.T) {
+	tests := []struct {
+		name          string
+		registerPath  string
+		requestPath   string
+		expectedRoute string
+	}{
+		{
+			name:          "static route",
+			registerPath:  "/api/health",
+			requestPath:   "/api/health",
+			expectedRoute: "/api/health",
+		},
+		{
+			name:          "route with path param",
+			registerPath:  "/api/users/:id",
+			requestPath:   "/api/users/123",
+			expectedRoute: "/api/users/:id",
+		},
+		{
+			name:          "route with multiple params",
+			registerPath:  "/api/:resource/:id",
+			requestPath:   "/api/orders/456",
+			expectedRoute: "/api/:resource/:id",
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			var matched string
+			router := NewRouter()
+			err := router.Handle(http.MethodGet, test.registerPath, http.HandlerFunc(
+				func(w http.ResponseWriter, r *http.Request) {
+					matched = pathvar.GetMatchedRoutePath(r)
+				}))
+			assert.Nil(t, err)
+
+			r, _ := http.NewRequest(http.MethodGet, test.requestPath, nil)
+			w := httptest.NewRecorder()
+			router.ServeHTTP(w, r)
+			assert.Equal(t, test.expectedRoute, matched)
+		})
+	}
+}
+
 func BenchmarkPatRouter(b *testing.B) {
 	b.ReportAllocs()
 

@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/5a6e/newzero/core/fs"
 	"github.com/stretchr/testify/assert"
+	"github.com/5a6e/newzero/core/fs"
 )
 
 func TestProperties(t *testing.T) {
