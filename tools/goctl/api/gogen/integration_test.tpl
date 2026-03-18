@@ -15,7 +15,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/zeromicro/go-zero/rest"
+	"github.com/5a6e/newzero/rest"
 )
 
 func TestMain(m *testing.M) {

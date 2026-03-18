@@ -6,11 +6,11 @@ import (
 	{{if .time}}"time"{{end}}
 
 	{{if .containsPQ}}"github.com/lib/pq"{{end}}
-	"github.com/zeromicro/go-zero/core/stores/builder"
-	"github.com/zeromicro/go-zero/core/stores/cache"
-	"github.com/zeromicro/go-zero/core/stores/sqlc"
-	"github.com/zeromicro/go-zero/core/stores/sqlx"
-	"github.com/zeromicro/go-zero/core/stringx"
+	"github.com/5a6e/newzero/core/stores/builder"
+	"github.com/5a6e/newzero/core/stores/cache"
+	"github.com/5a6e/newzero/core/stores/sqlc"
+	"github.com/5a6e/newzero/core/stores/sqlx"
+	"github.com/5a6e/newzero/core/stringx"
 
 	{{.third}}
 )

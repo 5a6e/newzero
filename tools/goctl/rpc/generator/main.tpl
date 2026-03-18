@@ -6,9 +6,9 @@ import (
 
 	{{.imports}}
 
-	"github.com/zeromicro/go-zero/core/conf"
-	"github.com/zeromicro/go-zero/core/service"
-	"github.com/zeromicro/go-zero/zrpc"
+	"github.com/5a6e/newzero/core/conf"
+	"github.com/5a6e/newzero/core/service"
+	"github.com/5a6e/newzero/zrpc"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
