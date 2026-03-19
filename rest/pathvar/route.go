@@ -15,6 +15,11 @@ func GetMatchedRoutePath(r *http.Request) string {
 	return p
 }
 
+func GetRouteFromContext(ctx context.Context) string {
+	p, _ := ctx.Value(matchedRoutePath).(string)
+	return p
+}
+
 // WithMatchedRoutePath writes the matched route path pattern into the request context.
 func WithMatchedRoutePath(r *http.Request, path string) *http.Request {
 	return r.WithContext(context.WithValue(r.Context(), matchedRoutePath, path))

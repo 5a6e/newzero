@@ -2,6 +2,9 @@ build:
 	go build -ldflags="-s -w" goctl.go
 	$(if $(shell command -v upx || which upx), upx goctl)
 
+install:
+	go build -ldflags="-s -w" -o $(GOPATH)/bin/newctl.exe goctl.go
+
 mac:
 	GOOS=darwin go build -ldflags="-s -w" -o goctl-darwin goctl.go
 	$(if $(shell command -v upx || which upx), upx goctl-darwin)
