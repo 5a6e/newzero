@@ -305,13 +305,75 @@ func (a *AtHandlerStmt) Pos() token.Position {
 
 func (a *AtHandlerStmt) stmtNode() {}
 
+type AtMetaStmt struct {
+	AtMeta *TokenNode
+	LParen *TokenNode
+	Values []*KVExpr
+	RParen *TokenNode
+}
+
+func (a *AtMetaStmt) HasHeadCommentGroup() bool {
+	return a.AtMeta.HasHeadCommentGroup()
+}
+
+func (a *AtMetaStmt) HasLeadingCommentGroup() bool {
+	return a.RParen.HasLeadingCommentGroup()
+}
+
+func (a *AtMetaStmt) CommentGroup() (head, leading CommentGroup) {
+	return a.AtMeta.HeadCommentGroup, a.RParen.LeadingCommentGroup
+}
+
+func (a *AtMetaStmt) Format(prefix ...string) string {
+	if len(a.Values) == 0 {
+		return ""
+	}
+	var textList []string
+	for _, v := range a.Values {
+		if v.Value.IsZeroString() {
+			continue
+		}
+		textList = append(textList, v.Format(peekOne(prefix)+Indent))
+	}
+	if len(textList) == 0 {
+		return ""
+	}
+
+	w := NewBufferWriter()
+	atMetaNode := transferTokenNode(a.AtMeta, withTokenNodePrefix(prefix...), ignoreLeadingComment())
+	w.Write(withNode(atMetaNode, a.LParen), expectSameLine())
+	w.NewLine()
+	for _, v := range a.Values {
+		node := transferNilInfixNode([]*TokenNode{v.Key, v.Colon})
+		node = transferTokenNode(node, withTokenNodePrefix(peekOne(prefix)+Indent), ignoreLeadingComment())
+		w.Write(withNode(node, v.Value), expectIndentInfix(), expectSameLine())
+		w.NewLine()
+	}
+	w.Write(withNode(transferTokenNode(a.RParen, withTokenNodePrefix(prefix...))))
+	return w.String()
+}
+
+func (a *AtMetaStmt) End() token.Position {
+	return a.RParen.End()
+}
+
+func (a *AtMetaStmt) Pos() token.Position {
+	return a.AtMeta.Pos()
+}
+
+func (a *AtMetaStmt) stmtNode() {}
+
 type ServiceItemStmt struct {
+	AtMeta    *AtMetaStmt
 	AtDoc     AtDocStmt
 	AtHandler *AtHandlerStmt
 	Route     *RouteStmt
 }
 
 func (s *ServiceItemStmt) HasHeadCommentGroup() bool {
+	if s.AtMeta != nil {
+		return s.AtMeta.HasHeadCommentGroup()
+	}
 	if s.AtDoc != nil {
 		return s.AtDoc.HasHeadCommentGroup()
 	}
@@ -324,6 +386,10 @@ func (s *ServiceItemStmt) HasLeadingCommentGroup() bool {
 
 func (s *ServiceItemStmt) CommentGroup() (head, leading CommentGroup) {
 	_, leading = s.Route.CommentGroup()
+	if s.AtMeta != nil {
+		head, _ = s.AtMeta.CommentGroup()
+		return head, leading
+	}
 	if s.AtDoc != nil {
 		head, _ = s.AtDoc.CommentGroup()
 		return head, leading
@@ -334,6 +400,13 @@ func (s *ServiceItemStmt) CommentGroup() (head, leading CommentGroup) {
 
 func (s *ServiceItemStmt) Format(prefix ...string) string {
 	w := NewBufferWriter()
+	if s.AtMeta != nil {
+		text := s.AtMeta.Format(prefix...)
+		if len(text) > 0 {
+			w.WriteText(text)
+			w.NewLine()
+		}
+	}
 	if s.AtDoc != nil {
 		w.WriteText(s.AtDoc.Format(prefix...))
 		w.NewLine()
@@ -351,6 +424,9 @@ func (s *ServiceItemStmt) End() token.Position {
 }
 
 func (s *ServiceItemStmt) Pos() token.Position {
+	if s.AtMeta != nil {
+		return s.AtMeta.Pos()
+	}
 	if s.AtDoc != nil {
 		return s.AtDoc.Pos()
 	}

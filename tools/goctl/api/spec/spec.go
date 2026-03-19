@@ -79,6 +79,7 @@ type (
 		Docs               Doc
 		Handler            string
 		AtDoc              AtDoc
+		Meta               map[string]string
 		HandlerDoc         Doc
 		HandlerComment     Doc
 		Doc                Doc

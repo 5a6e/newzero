@@ -256,6 +256,9 @@ func (a *Analyzer) fillService() error {
 			if astRoute.AtDoc != nil {
 				route.AtDoc = a.convertAtDoc(astRoute.AtDoc)
 			}
+			if astRoute.AtMeta != nil {
+				route.Meta = a.convertKV(astRoute.AtMeta.Values)
+			}
 			if astRoute.AtHandler != nil {
 				route.AtDoc = a.convertAtDoc(astRoute.AtDoc)
 				route.Handler = astRoute.AtHandler.Name.Token.Text

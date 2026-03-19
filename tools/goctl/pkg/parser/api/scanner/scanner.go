@@ -215,12 +215,18 @@ func (s *Scanner) scanAt() (token.Token, error) {
 			Text:     "@doc",
 			Position: s.newPosition(position),
 		}, nil
+	case "meta":
+		return token.Token{
+			Type:     token.AT_META,
+			Text:     "@meta",
+			Position: s.newPosition(position),
+		}, nil
 	default:
-
 		return token.ErrorToken, s.assertExpectedString(
 			"@"+letters,
 			token.AT_DOC.String(),
 			token.AT_HANDLER.String(),
+			token.AT_META.String(),
 			token.AT_SERVER.String())
 	}
 }

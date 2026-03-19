@@ -14,6 +14,7 @@ type (
 		Method  string
 		Path    string
 		Handler http.HandlerFunc
+		Meta    map[string]string
 	}
 
 	// RouteOption defines the method to customize a featured route.

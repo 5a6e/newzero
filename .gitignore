@@ -30,3 +30,4 @@ go.work.sum
 # vim auto backup file
 *~
 !OWNERS
+cmd

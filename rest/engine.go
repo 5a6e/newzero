@@ -16,6 +16,7 @@ import (
 	"github.com/5a6e/newzero/rest/handler"
 	"github.com/5a6e/newzero/rest/httpx"
 	"github.com/5a6e/newzero/rest/internal"
+	"github.com/5a6e/newzero/rest/pathvar"
 	"github.com/5a6e/newzero/rest/internal/header"
 	"github.com/5a6e/newzero/rest/internal/response"
 )
@@ -110,7 +111,16 @@ func (ng *engine) bindRoute(fr featuredRoutes, router httpx.Router, metrics *sta
 	for _, middleware := range ng.middlewares {
 		chn = chn.Append(convertMiddleware(middleware))
 	}
-	handle := chn.ThenFunc(route.Handler)
+
+	handler := route.Handler
+	if len(route.Meta) > 0 {
+		meta := route.Meta
+		handler = func(w http.ResponseWriter, r *http.Request) {
+			r = pathvar.WithMeta(r, meta)
+			route.Handler(w, r)
+		}
+	}
+	handle := chn.ThenFunc(handler)
 
 	return router.Handle(route.Method, route.Path, handle)
 }

@@ -76,6 +76,7 @@ type (
 		path    string
 		handler string
 		doc     string
+		meta    map[string]string
 	}
 )
 
@@ -97,6 +98,7 @@ func genRoutes(dir, rootPkg, projectPkg string, cfg *config.Config, api *spec.Ap
 		var gbuilder strings.Builder
 		gbuilder.WriteString("[]rest.Route{")
 		for _, r := range g.routes {
+			metaStr := genMetaString(r.meta)
 			var routeString string
 			if len(r.doc) > 0 {
 				routeString = fmt.Sprintf(`
@@ -104,15 +106,15 @@ func genRoutes(dir, rootPkg, projectPkg string, cfg *config.Config, api *spec.Ap
 						%s
 						Method:  %s,
 						Path:    "%s",
-						Handler: %s,
-					},`, getDoc(r.doc), r.method, r.path, r.handler)
+						Handler: %s,%s
+					},`, getDoc(r.doc), r.method, r.path, r.handler, metaStr)
 			} else {
 				routeString = fmt.Sprintf(`
 					{
 						Method:  %s,
 						Path:    "%s",
-						Handler: %s,
-					},`, r.method, r.path, r.handler)
+						Handler: %s,%s
+					},`, r.method, r.path, r.handler, metaStr)
 			}
 			fmt.Fprint(&gbuilder, routeString)
 		}
@@ -271,6 +273,7 @@ func getRoutes(api *spec.ApiSpec) ([]group, error) {
 				path:    r.Path,
 				handler: handler,
 				doc:     r.JoinedDoc(),
+				meta:    r.Meta,
 			})
 		}
 
@@ -311,6 +314,26 @@ func getRoutes(api *spec.ApiSpec) ([]group, error) {
 	}
 
 	return routes, nil
+}
+
+func genMetaString(meta map[string]string) string {
+	if len(meta) == 0 {
+		return ""
+	}
+
+	keys := make([]string, 0, len(meta))
+	for k := range meta {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+
+	var entries []string
+	for _, k := range keys {
+		entries = append(entries, fmt.Sprintf(`"%s": "%s"`, k, meta[k]))
+	}
+
+	return fmt.Sprintf(`
+						Meta: map[string]string{%s},`, strings.Join(entries, ", "))
 }
 
 func toPrefix(folder string) string {

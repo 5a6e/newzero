@@ -163,7 +163,7 @@ func (p *Parser) parseServiceItemsStmt() []*ast.ServiceItemStmt {
 			break
 		}
 
-		if p.notExpectPeekToken(token.AT_DOC, token.AT_HANDLER, token.RBRACE) {
+		if p.notExpectPeekToken(token.AT_META, token.AT_DOC, token.AT_HANDLER, token.RBRACE) {
 			return nil
 		}
 	}
@@ -173,6 +173,20 @@ func (p *Parser) parseServiceItemsStmt() []*ast.ServiceItemStmt {
 
 func (p *Parser) parseServiceItemStmt() *ast.ServiceItemStmt {
 	var stmt = &ast.ServiceItemStmt{}
+	// statement @meta
+	if p.peekTokenIs(token.AT_META) {
+		if !p.nextToken() {
+			return nil
+		}
+
+		atMetaStmt := p.parseAtMetaStmt()
+		if atMetaStmt == nil {
+			return nil
+		}
+
+		stmt.AtMeta = atMetaStmt
+	}
+
 	// statement @doc
 	if p.peekTokenIs(token.AT_DOC) {
 		if !p.nextToken() {
@@ -231,7 +245,7 @@ func (p *Parser) parseRouteStmt() *ast.RouteStmt {
 
 	stmt.Path = pathExpr
 
-	if p.peekTokenIs(token.AT_DOC, token.AT_HANDLER, token.RBRACE) {
+	if p.peekTokenIs(token.AT_META, token.AT_DOC, token.AT_HANDLER, token.RBRACE) {
 		return stmt
 	}
 
@@ -254,7 +268,7 @@ func (p *Parser) parseRouteStmt() *ast.RouteStmt {
 		stmt.Request = requestBodyStmt
 	}
 
-	if p.notExpectPeekToken(token.Returns, token.AT_DOC, token.AT_HANDLER, token.RBRACE, token.SEMICOLON) {
+	if p.notExpectPeekToken(token.Returns, token.AT_META, token.AT_DOC, token.AT_HANDLER, token.RBRACE, token.SEMICOLON) {
 		return nil
 	}
 
@@ -386,14 +400,14 @@ func (p *Parser) parsePathExpr() *ast.PathExpr {
 
 	var values []token.Token
 	for p.curTokenIsNotEof() &&
-		p.peekTokenIsNot(token.LPAREN, token.Returns, token.AT_DOC, token.AT_HANDLER, token.SEMICOLON, token.RBRACE) {
+		p.peekTokenIsNot(token.LPAREN, token.Returns, token.AT_META, token.AT_DOC, token.AT_HANDLER, token.SEMICOLON, token.RBRACE) {
 		// token '/'
 		if !p.advanceIfPeekTokenIs(token.QUO) {
 			return nil
 		}
 
 		values = append(values, p.curTok)
-		if p.peekTokenIs(token.LPAREN, token.Returns, token.AT_DOC, token.AT_HANDLER, token.SEMICOLON, token.RBRACE) {
+		if p.peekTokenIs(token.LPAREN, token.Returns, token.AT_META, token.AT_DOC, token.AT_HANDLER, token.SEMICOLON, token.RBRACE) {
 			break
 		}
 		if p.notExpectPeekTokenGotComment(p.curTokenNode().PeekFirstLeadingComment(), token.COLON, token.IDENT, token.INT) {
@@ -425,7 +439,7 @@ func (p *Parser) parsePathExpr() *ast.PathExpr {
 		}
 
 		values = append(values, pathTokens...)
-		if p.notExpectPeekToken(token.QUO, token.LPAREN, token.Returns, token.AT_DOC, token.AT_HANDLER, token.SEMICOLON, token.RBRACE) {
+		if p.notExpectPeekToken(token.QUO, token.LPAREN, token.Returns, token.AT_META, token.AT_DOC, token.AT_HANDLER, token.SEMICOLON, token.RBRACE) {
 			return nil
 		}
 	}
@@ -454,7 +468,7 @@ func (p *Parser) parsePathItem() []token.Token {
 	list = append(list, p.curTok)
 
 	for p.curTokenIsNotEof() &&
-		p.peekTokenIsNot(token.QUO, token.LPAREN, token.Returns, token.AT_DOC, token.AT_HANDLER, token.RBRACE, token.SEMICOLON, token.EOF) {
+		p.peekTokenIsNot(token.QUO, token.LPAREN, token.Returns, token.AT_META, token.AT_DOC, token.AT_HANDLER, token.RBRACE, token.SEMICOLON, token.EOF) {
 		if p.peekTokenIs(token.SUB) {
 			if !p.nextToken() {
 				return nil
@@ -481,7 +495,7 @@ func (p *Parser) parsePathItem() []token.Token {
 
 			list = append(list, p.curTok)
 		} else {
-			if p.peekTokenIs(token.LPAREN, token.Returns, token.AT_DOC, token.AT_HANDLER, token.SEMICOLON, token.RBRACE) {
+			if p.peekTokenIs(token.LPAREN, token.Returns, token.AT_META, token.AT_DOC, token.AT_HANDLER, token.SEMICOLON, token.RBRACE) {
 				return list
 			}
 
@@ -583,6 +597,39 @@ func (p *Parser) parseAtDocLiteralStmt() ast.AtDocStmt {
 	}
 
 	stmt.Value = p.curTokenNode()
+
+	return stmt
+}
+
+func (p *Parser) parseAtMetaStmt() *ast.AtMetaStmt {
+	var stmt = &ast.AtMetaStmt{}
+	stmt.AtMeta = p.curTokenNode()
+
+	// token '('
+	if !p.advanceIfPeekTokenIs(token.LPAREN) {
+		return nil
+	}
+
+	stmt.LParen = p.curTokenNode()
+
+	for p.curTokenIsNotEof() && p.peekTokenIsNot(token.RPAREN) {
+		expr := p.parseKVExpression()
+		if expr == nil {
+			return nil
+		}
+
+		stmt.Values = append(stmt.Values, expr)
+		if p.notExpectPeekToken(token.RPAREN, token.IDENT) {
+			return nil
+		}
+	}
+
+	// token ')'
+	if !p.advanceIfPeekTokenIs(token.RPAREN) {
+		return nil
+	}
+
+	stmt.RParen = p.curTokenNode()
 
 	return stmt
 }
@@ -1718,6 +1765,8 @@ func (p *Parser) parseStmtForUniTest() ast.Stmt {
 		return p.parseAtServerStmt()
 	case token.AT_HANDLER:
 		return p.parseAtHandlerStmt()
+	case token.AT_META:
+		return p.parseAtMetaStmt()
 	case token.AT_DOC:
 		return p.parseAtDocStmt()
 	}

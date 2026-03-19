@@ -184,6 +184,7 @@ const (
 	api_keyword_bg
 	AT_DOC
 	AT_HANDLER
+	AT_META
 	AT_SERVER
 	ANY
 
@@ -263,6 +264,7 @@ var tokens = [...]string{
 
 	AT_DOC:     "@doc",
 	AT_HANDLER: "@handler",
+	AT_META:    "@meta",
 	AT_SERVER:  "@server",
 	ANY:        "interface{}",
 }
