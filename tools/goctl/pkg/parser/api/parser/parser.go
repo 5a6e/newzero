@@ -1201,6 +1201,23 @@ func (p *Parser) parseAtServerKVExpression() *ast.KVExpr {
 
 	expr.Key = p.curTokenNode()
 
+	// support dotted keys like "meta.role"
+	for p.peekTokenIs(token.DOT) {
+		if !p.nextToken() {
+			return nil
+		}
+		dotTok := p.curTok
+		if !p.advanceIfPeekTokenIs(token.IDENT) {
+			return nil
+		}
+		idTok := p.curTok
+		expr.Key.Token = token.Token{
+			Type:     token.IDENT,
+			Text:     expr.Key.Token.Text + dotTok.Text + idTok.Text,
+			Position: expr.Key.Token.Position,
+		}
+	}
+
 	if !p.advanceIfPeekTokenIs(token.COLON) {
 		return nil
 	}

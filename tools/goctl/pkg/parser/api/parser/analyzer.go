@@ -244,6 +244,7 @@ func (a *Analyzer) fillService() error {
 			group.Annotation.Properties = a.convertKV(item.AtServerStmt.Values)
 		}
 
+		serverMeta := extractServerMeta(group.Annotation.Properties)
 		sse := group.GetAnnotation("sse") == "true"
 		for _, astRoute := range item.Routes {
 			head, leading := astRoute.CommentGroup()
@@ -256,9 +257,7 @@ func (a *Analyzer) fillService() error {
 			if astRoute.AtDoc != nil {
 				route.AtDoc = a.convertAtDoc(astRoute.AtDoc)
 			}
-			if astRoute.AtMeta != nil {
-				route.Meta = a.convertKV(astRoute.AtMeta.Values)
-			}
+			route.Meta = mergeRouteMeta(serverMeta, astRoute)
 			if astRoute.AtHandler != nil {
 				route.AtDoc = a.convertAtDoc(astRoute.AtDoc)
 				route.Handler = astRoute.AtHandler.Name.Token.Text
@@ -514,4 +513,42 @@ var kind = map[string]placeholder.Type{
 func IsBaseType(text string) bool {
 	_, ok := kind[text]
 	return ok
+}
+
+const serverMetaPrefix = "meta."
+
+// extractServerMeta extracts meta entries from @server properties.
+// Properties with key prefix "meta." are treated as meta entries,
+// e.g. "meta.role: admin" becomes meta["role"] = "admin".
+func extractServerMeta(properties map[string]string) map[string]string {
+	meta := make(map[string]string)
+	for k, v := range properties {
+		if strings.HasPrefix(k, serverMetaPrefix) {
+			meta[strings.TrimPrefix(k, serverMetaPrefix)] = v
+		}
+	}
+	return meta
+}
+
+// mergeRouteMeta merges server-level meta with route-level @meta.
+// Route-level values override server-level values for the same key.
+func mergeRouteMeta(serverMeta map[string]string, astRoute *ast.ServiceItemStmt) map[string]string {
+	if len(serverMeta) == 0 && astRoute.AtMeta == nil {
+		return nil
+	}
+
+	merged := make(map[string]string, len(serverMeta))
+	for k, v := range serverMeta {
+		merged[k] = v
+	}
+	if astRoute.AtMeta != nil {
+		for _, kv := range astRoute.AtMeta.Values {
+			key := strings.TrimSuffix(kv.Key.Token.Text, ":")
+			merged[key] = kv.Value.RawText()
+		}
+	}
+	if len(merged) == 0 {
+		return nil
+	}
+	return merged
 }

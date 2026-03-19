@@ -15,6 +15,13 @@ import (
 	"github.com/5a6e/newzero/rest/internal/header"
 )
 
+// HttpResponse is the standard JSON response structure.
+type HttpResponse struct {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+	Data    any    `json:"data"`
+}
+
 var (
 	errorHandler func(context.Context, error) (int, any)
 	errorLock    sync.RWMutex
