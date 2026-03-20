@@ -94,7 +94,7 @@ func genHandlerImports(group spec.Group, route spec.Route, parentPkg string) str
 		imports = append(imports, fmt.Sprintf("\"%s\"", pathx.JoinPackages(parentPkg, typesDir)))
 	}
 
-	return strings.Join(imports, "\n\t") + "\n\n\t\"github.com/5a6e/newzero/rest/httpx\""
+	return strings.Join(imports, "\n\t") + "\n\n\t\"github.com/5a6e/newzero/core/logx\"\n\t\"github.com/5a6e/newzero/rest/httpx\""
 }
 
 func getHandlerBaseName(route spec.Route) (string, error) {

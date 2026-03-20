@@ -9,10 +9,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/5a6e/newzero/rest/httpx"
 	"github.com/5a6e/newzero/rest/internal/header"
 	"github.com/5a6e/newzero/rest/pathvar"
+	"github.com/stretchr/testify/assert"
 )
 
 const contentLength = "Content-Length"
@@ -805,7 +805,8 @@ func TestParseWithMissingForm(t *testing.T) {
 
 			err = httpx.Parse(r, &v)
 			assert.NotNil(t, err)
-			assert.Equal(t, `field "zipcode" is not set`, err.Error())
+			assert.True(t, httpx.IsRequestParseError(err))
+			assert.Contains(t, err.Error(), `field "zipcode" is not set`)
 		}))
 	assert.Nil(t, err)
 
@@ -911,7 +912,8 @@ func TestParseWithMissingPath(t *testing.T) {
 
 			err = httpx.Parse(r, &v)
 			assert.NotNil(t, err)
-			assert.Equal(t, "field name is not set", err.Error())
+			assert.True(t, httpx.IsRequestParseError(err))
+			assert.Contains(t, err.Error(), "field name is not set")
 		}))
 	assert.Nil(t, err)
 

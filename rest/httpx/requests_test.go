@@ -11,9 +11,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/5a6e/newzero/rest/internal/header"
 	"github.com/5a6e/newzero/rest/pathvar"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestParseForm(t *testing.T) {
@@ -374,7 +374,11 @@ func TestParsePath_Error(t *testing.T) {
 	r = pathvar.WithVars(r, map[string]string{
 		"name": "foo",
 	})
-	assert.NotNil(t, Parse(r, &v))
+	err := Parse(r, &v)
+	assert.Error(t, err)
+	assert.True(t, IsRequestParseError(err))
+	var pe *RequestParseError
+	assert.True(t, errors.As(err, &pe))
 }
 
 func TestParseFormOutOfRange(t *testing.T) {

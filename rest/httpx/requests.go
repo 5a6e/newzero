@@ -40,6 +40,29 @@ var (
 	validatorLock sync.RWMutex
 )
 
+// RequestParseError wraps errors returned by Parse (path, form, header, JSON body,
+// or validation invoked from Parse). Use IsRequestParseError or errors.As with
+// *RequestParseError to treat them as client parameter / binding errors.
+type RequestParseError struct {
+	Err error
+}
+
+// Error implements error.
+func (e *RequestParseError) Error() string {
+	if e == nil || e.Err == nil {
+		return "httpx: request parse error"
+	}
+	return e.Err.Error()
+}
+
+// Unwrap implements errors.Unwrap.
+func (e *RequestParseError) Unwrap() error {
+	if e == nil {
+		return nil
+	}
+	return e.Err
+}
+
 // Validator defines the interface for validating the request.
 type Validator interface {
 	// Validate validates the request and parsed data.
@@ -47,30 +70,39 @@ type Validator interface {
 }
 
 // Parse parses the request.
-func Parse(r *http.Request, v any) error {
+func Parse(r *http.Request, v any) (err error) {
+	defer func() {
+		if err != nil {
+			err = &RequestParseError{Err: err}
+		}
+	}()
+
 	kind := mapping.Deref(reflect.TypeOf(v)).Kind()
 	if kind != reflect.Array && kind != reflect.Slice {
-		if err := ParsePath(r, v); err != nil {
-			return err
+		if err = ParsePath(r, v); err != nil {
+			return
 		}
 
-		if err := ParseForm(r, v); err != nil {
-			return err
+		if err = ParseForm(r, v); err != nil {
+			return
 		}
 
-		if err := ParseHeaders(r, v); err != nil {
-			return err
+		if err = ParseHeaders(r, v); err != nil {
+			return
 		}
 	}
 
-	if err := ParseJsonBody(r, v); err != nil {
-		return err
+	if err = ParseJsonBody(r, v); err != nil {
+		return
 	}
 
 	if valid, ok := v.(validation.Validator); ok {
-		return valid.Validate()
-	} else if val := getValidator(); val != nil {
-		return val.Validate(r, v)
+		err = valid.Validate()
+		return
+	}
+	if val := getValidator(); val != nil {
+		err = val.Validate(r, v)
+		return
 	}
 
 	return nil
