@@ -91,10 +91,10 @@ func genHandlerImports(group spec.Group, route spec.Route, parentPkg string) str
 	}
 	sse := group.GetAnnotation("sse")
 	if len(route.RequestTypeName()) > 0 || sse == "true" {
-		imports = append(imports, fmt.Sprintf("\"%s\"\n", pathx.JoinPackages(parentPkg, typesDir)))
+		imports = append(imports, fmt.Sprintf("\"%s\"", pathx.JoinPackages(parentPkg, typesDir)))
 	}
 
-	return strings.Join(imports, "\n\t")
+	return strings.Join(imports, "\n\t") + "\n\n\t\"github.com/5a6e/newzero/rest/httpx\""
 }
 
 func getHandlerBaseName(route spec.Route) (string, error) {

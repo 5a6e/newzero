@@ -7,8 +7,6 @@ import (
 	"net/http"
 
 	{{.ImportPackages}}
-	
-	"github.com/5a6e/newzero/rest/httpx"
 )
 
 {{if .HasDoc}}{{.Doc}}{{end}}
@@ -26,9 +24,9 @@ func {{.HandlerName}}(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {
 			{{if .HasResp}}httpx.OkJsonCtx(r.Context(), w, &httpx.HttpResponse{
+				Code:    0,
 				Message: "ok",
 				Data:    resp,
-				Code:    0,
 			}){{else}}httpx.Ok(w){{end}}
 		}
 	}

@@ -228,6 +228,7 @@ func WithMiddleware(middleware Middleware, rs ...Route) []Route {
 			Method:  route.Method,
 			Path:    route.Path,
 			Handler: middleware(route.Handler),
+			Meta:    route.Meta,
 		}
 	}
 
