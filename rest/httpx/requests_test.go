@@ -376,9 +376,9 @@ func TestParsePath_Error(t *testing.T) {
 	})
 	err := Parse(r, &v)
 	assert.Error(t, err)
-	assert.True(t, IsRequestParseError(err))
 	var pe *RequestParseError
 	assert.True(t, errors.As(err, &pe))
+	assert.Equal(t, "path: missing path variable \"age\"", pe.Error())
 }
 
 func TestParseFormOutOfRange(t *testing.T) {

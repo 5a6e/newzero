@@ -260,6 +260,7 @@ func WithPrefix(group string) RouteOption {
 				Method:  rt.Method,
 				Path:    p,
 				Handler: rt.Handler,
+				Meta:    rt.Meta,
 			})
 		}
 		r.routes = routes

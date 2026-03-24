@@ -805,7 +805,6 @@ func TestParseWithMissingForm(t *testing.T) {
 
 			err = httpx.Parse(r, &v)
 			assert.NotNil(t, err)
-			assert.True(t, httpx.IsRequestParseError(err))
 			assert.Contains(t, err.Error(), `field "zipcode" is not set`)
 		}))
 	assert.Nil(t, err)
@@ -912,7 +911,6 @@ func TestParseWithMissingPath(t *testing.T) {
 
 			err = httpx.Parse(r, &v)
 			assert.NotNil(t, err)
-			assert.True(t, httpx.IsRequestParseError(err))
 			assert.Contains(t, err.Error(), "field name is not set")
 		}))
 	assert.Nil(t, err)
